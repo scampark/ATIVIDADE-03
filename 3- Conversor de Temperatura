@@ -1,0 +1,33 @@
+# Programa: Conversor de Temperatura
+
+# Solicita os dados do usuário
+temperatura = float(input("Digite a temperatura: "))
+origem = input("Digite a unidade de origem (C, F ou K): ").upper()
+destino = input("Digite a unidade de destino (C, F ou K): ").upper()
+
+# Função de conversão
+def converter_temperatura(temp, de, para):
+    if de == para:
+        return temp
+
+    # Converter de origem para Celsius
+    if de == "F":
+        temp = (temp - 32) * 5/9
+    elif de == "K":
+        temp = temp - 273.15
+
+    # Converter de Celsius para destino
+    if para == "F":
+        return (temp * 9/5) + 32
+    elif para == "K":
+        return temp + 273.15
+    else:
+        return temp  # já está em Celsius
+
+# Verifica se as unidades são válidas
+unidades_validas = ["C", "F", "K"]
+if origem not in unidades_validas or destino not in unidades_validas:
+    print("Unidades inválidas. Use apenas C, F ou K.")
+else:
+    resultado = converter_temperatura(temperatura, origem, destino)
+    print(f"\n{temperatura}°{origem} equivalem a {resultado:.2f}°{destino}")
